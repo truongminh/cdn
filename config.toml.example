@@ -1,0 +1,12 @@
+[server]
+port=80
+
+[[service]]
+name="api"
+domain="api.example.com"
+host="http://127.0.0.1:8081"
+
+[[service]]
+name="default"
+domain="example.com"
+host="http://127.0.0.1:8080"
