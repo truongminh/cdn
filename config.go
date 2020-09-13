@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"flag"
-	"fmt"
 	"io/ioutil"
 	"log"
 
@@ -35,10 +34,9 @@ func readConfig(ctx context.Context) config {
 	if err != nil {
 		panic(err)
 	}
-	if c.Server.Port == 0 {
-		c.Server.Port = 8081
+	if c.Server.Addr == "" {
+		c.Server.Addr = ":8081"
 	}
-	c.Server.Addr = fmt.Sprintf(":%d", c.Server.Port)
 	return c
 }
 
