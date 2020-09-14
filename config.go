@@ -11,8 +11,7 @@ import (
 
 type config struct {
 	Server struct {
-		Port int
-		Addr string
+		ServerOptions
 	}
 	Services []struct {
 		Host   string
@@ -33,9 +32,6 @@ func readConfig(ctx context.Context) config {
 	_, err = toml.Decode(string(buf), &c)
 	if err != nil {
 		panic(err)
-	}
-	if c.Server.Addr == "" {
-		c.Server.Addr = ":8081"
 	}
 	return c
 }

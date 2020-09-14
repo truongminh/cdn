@@ -10,7 +10,7 @@ func main() {
 	prerun(ctx)
 	log.Printf("initing ...")
 	conf := readConfig(ctx)
-	s := &server{addr: conf.Server.Addr}
+	s := &server{opt: conf.Server.ServerOptions}
 	for _, cs := range conf.Services {
 		service := &Service{
 			Host:   cs.Host,
@@ -20,5 +20,6 @@ func main() {
 		service.init()
 		s.services = append(s.services, service)
 	}
-	s.listen(ctx)
+	go s.listen(ctx)
+	<-ctx.Done()
 }
